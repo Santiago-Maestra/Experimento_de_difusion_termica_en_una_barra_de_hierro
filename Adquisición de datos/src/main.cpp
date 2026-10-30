@@ -69,37 +69,17 @@ DallasTemperature sensoresTemperatura(&oneWire);
 
 
 // Direcciones.
+//Colocar direcciones en hexadecimal de los sensores reconocidos por el script direcciones_sensores.
 DeviceAddress direccion1 = {
-    0x28, 
-    0xF2, 
-    0x75, 
-    0x58, 
-    0xD4, 
-    0xE1, 
-    0x3C, 
-    0x52
+   
 };
 
 DeviceAddress direccion2 = {
-    0x28,
-    0x2F, 
-    0xA9, 
-    0x58,
-    0xD4,
-    0xE1,
-    0x3C, 
-    0xA3 
+   
 };
 
 DeviceAddress direccion3 = {
-     0x28,
-     0xD4,
-     0x89,
-     0x58,
-     0xD4,
-     0xE1,
-     0x3C,
-     0xD1
+    
 };
 
 
