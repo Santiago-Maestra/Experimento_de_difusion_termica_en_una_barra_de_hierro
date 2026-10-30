@@ -27,11 +27,11 @@ class SensorTemperatura {
     float posicion;
 
 
-    // Constructor (inicializar atributos de la clase).
+    // Constructor (inicializa los atributos de la clase).
 
     SensorTemperatura(DeviceAddress direccionSensor, float posicionSensor) {
 
-        // Recorrer dirección (64 bits).
+        // Recorre dirección (64 bits).
 
         for (int i = 0; i < 8; i++) {
             direccion[i] = direccionSensor[i];
@@ -69,7 +69,6 @@ DallasTemperature sensoresTemperatura(&oneWire);
 
 
 // Direcciones.
-
 DeviceAddress direccion1 = {
     0x28, 
     0xF2, 
@@ -160,7 +159,7 @@ void medirSensores(float tiempo) {
 }
 
 
-// Función de inicio de experimento.
+// Función de inicio del experimento.
 
 void iniciarExperimento() {
 
@@ -247,9 +246,9 @@ void procesarComando() {
         char comando = Serial.read();
 
 
-        // S = Start.
+        // E,e= Empezar.
 
-        if (comando == 'S' || comando == 's') {
+        if (comando == 'E' || comando == 'e') {
 
             if (!experimentoIniciado) {
                 iniciarExperimento();
@@ -257,7 +256,7 @@ void procesarComando() {
         }
 
 
-        // P = Pause/Resume.
+        // P,p = Pausar,reanudar.
 
         else if (comando == 'P' || comando == 'p') {
 
@@ -271,7 +270,7 @@ void procesarComando() {
         }
 
 
-        // R = Reset.
+        // R,r = Reiniciar.
 
         else if (comando == 'R' || comando == 'r') {
 
@@ -279,9 +278,9 @@ void procesarComando() {
         }
 
 
-        // E = End.
+        // T,t = Terminar.
 
-        else if (comando == 'E' || comando == 'e') {
+        else if (comando == 'T' || comando == 't') {
 
             finalizarExperimento();
         }
@@ -303,10 +302,10 @@ void setup() {
     // Mensajes iniciales.
 
     Serial.println("# Sistema listo");
-    Serial.println("# S = iniciar");
-    Serial.println("# P = pausar/reanudar");
-    Serial.println("# R = reiniciar");
-    Serial.println("# E = finalizar");
+    Serial.println("# E = Empezar");
+    Serial.println("# P = Pausar/reanudar");
+    Serial.println("# R = Reiniciar");
+    Serial.println("# T = Terminar");
     Serial.println("# tiempo,posicion,temperatura");
 }
 
@@ -315,13 +314,13 @@ void setup() {
 
 void loop() {
 
-    // Revisar si se recibió algún comando.
+    // Revisa si se recibió algún comando.
 
     procesarComando();
 
 
     // Si el experimento no comenzó,
-    // no realizar mediciones.
+    // no realiza mediciones.
 
     if (!experimentoIniciado) {
         return;
@@ -329,7 +328,7 @@ void loop() {
 
 
     // Si está pausado,
-    // no realizar mediciones.
+    // no realiza mediciones.
 
     if (experimentoPausado) {
         return;
